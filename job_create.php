@@ -1,7 +1,7 @@
 <?php 
 session_start();
 session_destroy();
-$connection = mysqli_connect("localhost", "root", "", "job");
+$connection = mysqli_connect("localhost", "root", "", "job_board");
 
 if(isset($_POST["submit"])){
 	$job_title = $_POST['job_title'];
@@ -20,7 +20,7 @@ $query = "INSERT INTO job (job_title, job_salary, job_description, job_qualifica
 				die("Query failed" . mysqli_error());
 			}
 
-			// echo "You have successfully posted a job! ";
+			echo "You have successfully posted a job! ";
 }
 
 ?>
