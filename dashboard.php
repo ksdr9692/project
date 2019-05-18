@@ -161,6 +161,12 @@
 										</p>
 									</div>
 								</div>
+								<div class="row justify-content-center">
+									<div class="col-md-4 ">
+                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="update" value="submit">UPDATE</button>
+                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="delete" value="submit">DELETE</button>
+                        			</div>
+								</div>
 							</div>
 						</div>		
 						<?php
