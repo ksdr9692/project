@@ -121,6 +121,7 @@
 
 					for ($i=0; $i < mysqli_num_rows($posts); $i++) { 
 						$post = mysqli_fetch_array($posts, MYSQLI_ASSOC);
+						
 						?>
 						<div class="card job-card mb-3">
 							<div class="card-body">
@@ -128,7 +129,7 @@
 									<div class="col-md-8">
 										<h5 class="card-title mb-1">
 											<a class="text-decoration-none text-dark" href="#">
-												<?= $post['job_title'] ?>
+												<?= $post['job_title']?>
 											</a>
 										</h5>
 										<p class="card-text">
@@ -163,7 +164,8 @@
 								</div>
 								<div class="row justify-content-center">
 									<div class="col-md-4 ">
-                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="update" value="submit">UPDATE</button>
+
+                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="update"><a href="<?='job_update.php?job_id=' . $post['job_id'] ?>">UPDATE</a></button>
                         				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="delete" value="submit">DELETE</button>
                         			</div>
 								</div>
