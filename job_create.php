@@ -30,6 +30,8 @@ $query = "INSERT INTO job (job_title, job_salary, job_description, job_qualifica
 			}
 
 			echo "<script>alert(You have successfully posted a job!)</script>";
+			header("location: dashboard.php");
+			return;
 }
 
 ?>

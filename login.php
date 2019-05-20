@@ -1,18 +1,23 @@
 <?php
 
 session_start();
+//commands page to store data for later use
 
 if (isset($_SESSION['user_id'])) {
 	header("location: dashboard.php");
 }
+//if session has user_id that matches any user_id in the data base, page will redirect to dashboard.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//if server will get information with form method assigned 'post', the following commands would follow:
 	$connection = mysqli_connect("localhost", "root", "", "job_board");
+	//variable that establishing connection with the database
 
 	$user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
-	// $user_password = mysqli_real_escape_string($connection, $user_password);
+	// variable which is initiae escape of special characters in the email form;
 
 	$sql = "SELECT * FROM user WHERE user_email = '$user_email'";
+	
 	$result = mysqli_query($connection , $sql);
 	
 	for ($i = 0; $i < mysqli_num_rows($result); $i++) { 

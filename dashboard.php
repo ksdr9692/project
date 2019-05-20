@@ -25,9 +25,19 @@
 			WHERE user.user_id = ' . $user['user_id']; 
 		$posts = mysqli_query($connection , $sql);
 	} else {
-		$sql = 'SELECT * FROM job'; 
+		$sql= 'SELECT job.*, user.user_company AS company, 
+			user.user_email AS email, 
+			user.user_contact AS contact 
+			FROM job
+			INNER JOIN user
+			ON user.user_id = job.user_id
+			WHERE user.user_id' ; 
 		$posts = mysqli_query($connection , $sql);
 	}
+
+	
+
+	
 ?>
 
 <style>
@@ -94,7 +104,8 @@
 					<h4 class="d-inline-block">
 						<?= $user['user_role'] == 'Employer' ? 'My Job Posts' : 'Latest Job Posts' ?>
 					</h4>
-					<a class="float-right" href="job_create.php">+ Create Job Post</a>
+					<a class="float-right" href="job_create.php"
+					style="<?=$user['user_role'] != 'Employer' ? 'display:none' : 'none'?>">+ Create Job Post</a>
 				</div>
 
 				<?php 
@@ -136,7 +147,17 @@
 											<a class="text-muted text-decoration-none" href="#">
 												<?= $post['company'] ?>
 											</a>
+											<div style="<?=$user['user_role'] == 'Employer' ? 'display:none' : 'none'?>">
+												<a class="text-muted text-decoration-none" href="#">
+													Contact Employer at:<br>
+													<?= $post['email'] ?>
+												</a> <br>
+												<a class="text-muted text-decoration-none" href="#">
+													<?= $post['contact'] ?>
+												</a>
+											</div>
 										</p>
+
 									</div>
 									<div class="col-md-4">
 										<h6 class="float-right">
@@ -165,8 +186,16 @@
 								<div class="row justify-content-center">
 									<div class="col-md-4 ">
 
-                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="update"><a href="<?='job_update.php?job_id=' . $post['job_id'] ?>">UPDATE</a></button>
-                        				<button type="submit" class="btn btn-outline-danger btn-sm btn-inline login-button" name="delete" value="submit">DELETE</button>
+                        				<button type="submit" 
+                        				style="<?=$user['user_role'] != 'Employer' ? 'display:none' : 'none'?>"
+                        				class="btn btn-outline-danger btn-sm btn-inline login-button" 
+                        				name="update">
+                        				<a href="<?='job_update.php?job_id=' . $post['job_id'] ?>">UPDATE</a></button>
+                        				<button type="submit" 
+                        				style="<?=$user['user_role'] != 'Employer' ? 'display:none' : 'none'?>"
+                        				class="btn btn-outline-danger btn-sm btn-inline login-button" 
+                        				name="delete" >
+                        				<a href="<?='job_delete.php?job_id=' . $post['job_id'] ?>">DELETE</a></button>
                         			</div>
 								</div>
 							</div>

@@ -106,7 +106,7 @@ if(isset($_POST["submit"])){
 						<div class="row">
 							<div class="col-md-12">
 								<label for="user_role" 
-								class="cols-md-4 control-label">Apply as an:</label>
+							 	class="cols-md-4 control-label">Apply as an:</label>
 
 								<select class="form-control" 
 								name="user_role">
